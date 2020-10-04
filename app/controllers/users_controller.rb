@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_action :require_user_logged_in, only:[:index, :show]
+  
   def index
     #全UserをID降順に並べる。ページネーションで25件ずつ
     @users = User.order(id: :desc).page(params[:page]).per(25)
